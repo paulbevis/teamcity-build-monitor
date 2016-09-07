@@ -1,6 +1,7 @@
 # teamcity-build-monitor
 A build monitor that uses Relay and GraphQL to communicate with a Team City server
 
+Based upon the Facebook Relay Starter Kit (https://github.com/relayjs/relay-starter-kit)
 ## Installation
 
 ```
