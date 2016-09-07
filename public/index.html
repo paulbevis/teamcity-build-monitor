@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Relay • Starter Kit</title>
+  <style media="screen" type="text/css">
+    body {
+      font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+      background: lightgoldenrodyellow;
+      padding: 10px;
+    }
+  </style
+</head>
+<body>
+<h1 style="margin: 0px 0 30px 0;">Team City: Build Monitor</h1>
+<div id="root"></div>
+<script type="text/javascript">
+  // Force `fetch` polyfill to workaround Chrome not displaying request body
+  // in developer tools for the native `fetch`.
+  self.fetch = null;
+</script>
+<script src="http://localhost:3003/webpack-dev-server.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
