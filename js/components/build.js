@@ -21,7 +21,7 @@ export default class BuildComponent extends React.Component {
       color: 'white'
     };
     let content = `${passedTests} Passed`;
-    if (failedTests !== '0') {
+    if (failedTests !== '') {
       content = `${failedTests} Failed`;
     }
     return (<div style={styling}>{content}</div>)
