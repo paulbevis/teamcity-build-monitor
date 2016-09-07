@@ -33,7 +33,7 @@ export default class BuildComponent extends React.Component {
 
   render() {
     const failedTests = this.getPropertyResult('FailedTestCount');
-    const buildPassed = failedTests === '0';
+    const buildPassed = failedTests === '';
     const passedTests = this.getPropertyResult('PassedTestCount');
     const ccLines = this.displayFormat(this.getPropertyResult('CodeCoverageL'));
     const ccFunctions = this.displayFormat(this.getPropertyResult('CodeCoverageM'));
