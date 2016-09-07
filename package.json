@@ -1,12 +1,10 @@
 {
   "name": "teamcity-build-monitor",
-  "private": true,
   "description": "A build monitor that uses Relay and GraphQL to communicate with a Team City server",
   "repository": {
     "type": "git",
     "url": "https://github.com/paulbevis/teamcity-build-monitor"
   },
-  "repository": "facebook/relay-starter-kit",
   "version": "0.1.0",
   "author": "Paul Bevis",
   "license": "MIT",
