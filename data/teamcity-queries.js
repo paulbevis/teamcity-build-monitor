@@ -5,8 +5,8 @@ import {buildTypesType, branchesType, buildResultsType, buildStatisticsType, bui
 
 const options = {
   auth: {
-    'user': 'xxx',
-    'pass': 'xxx',
+    'user': 'monitor',
+    'pass': 'password999',
     'sendImmediately': true
   },
   headers: {
