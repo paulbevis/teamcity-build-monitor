@@ -50,7 +50,7 @@ export default class BuildComponent extends React.Component {
     return (
       <div style={styling}>
         <div style={{display: 'flex', justifyContent: 'flex-end'}}>
-          <span style={{display: 'flex', fontSize: '12px', color: 'darkGray'}}>{this.props.buildNumber}</span>
+          <span style={{display: 'flex', fontSize: '12px', color: '#333'}}>{this.props.buildNumber}</span>
         </div>
         <div style={{display: 'flex', justifyContent: 'center', fontSize: '40px', color: 'white'}}>{this.props.branchName}</div>
         {this.displayTestResults(failedTests, passedTests)}
