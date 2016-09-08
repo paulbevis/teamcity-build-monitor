@@ -57,6 +57,7 @@ module.exports = {
                 let stats = JSON.parse(resp2);
                 stats.branchName = buildParent.build[0].branchName
                 stats.buildNumber = buildParent.build[0].number
+                stats.state = buildParent.build[0].state
                 return stats;
               });
           }
