@@ -28,7 +28,7 @@ export default class BuildComponent extends React.Component {
   }
 
   displayFormat(percentageString) {
-    return `${parseFloat(percentageString).toFixed(2)}%`;
+    return `${parseFloat(percentageString).toFixed(2)}`;
   }
 
   render() {
