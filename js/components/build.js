@@ -33,13 +33,14 @@ export default class BuildComponent extends React.Component {
 
   render() {
     const failedTests = this.getPropertyResult('FailedTestCount');
-    const buildPassed = failedTests === '';
+    const buildPassed = this.props.status === 'SUCCESS';
+    const buildComplete = this.props.state === 'finished';
     const passedTests = this.getPropertyResult('PassedTestCount');
     const ccLines = this.displayFormat(this.getPropertyResult('CodeCoverageL'));
     const ccFunctions = this.displayFormat(this.getPropertyResult('CodeCoverageM'));
     const ccStatements = this.displayFormat(this.getPropertyResult('CodeCoverageB'));
     let styling = {
-      backgroundColor: buildPassed ? 'green' : '#FE2E2E',
+      backgroundColor: !buildComplete? 'orange': buildPassed ? 'green' : '#FE2E2E',
       display: 'flex',
       flexDirection: 'column',
       alignSelf: 'center',

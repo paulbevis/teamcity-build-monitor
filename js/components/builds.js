@@ -33,6 +33,8 @@ export default Relay.createContainer(BuildsComponent, {
             data {
                 branchName
                 buildNumber
+                state
+                status
                 property {
                     name
                     value
