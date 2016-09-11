@@ -21,7 +21,8 @@ export default class App extends React.Component {
     setTimeout(()=> {
       this.setState({'lastPoll': Date.now()});
       this.pollForLatestChanges();
-    }, 20000)
+      console.log('pollForLatestChanges')
+    }, 60000)
 
   }
 
@@ -33,7 +34,11 @@ export default class App extends React.Component {
     return (
       <RootContainer
         Component={BuildType}
-        route={new BuildTypeRoute()}/>
+        route={new BuildTypeRoute()}
+        forceFetch={true}
+        renderFetched={function(data) {
+          return (<BuildType {...data} date={Date.now()}/>);
+        }}/>
     );
   }
 
@@ -44,20 +49,8 @@ export default class App extends React.Component {
     };
     return (
       <div>
-        <div style={credentials}>
-          <div><span>TeamCity Loc: </span><input type="url" placeholder="http://..." id="server-loc"/></div>
-          <div><span>username: </span><input type="text" id="username"/></div>
-          <div><span>password: </span><input type="password" id="password"/></div>
-        </div>
-        <div>
-          <div>
-            <button style={{fontSize: '20px', margin: '10px 0'}} onClick={this.addBuildAreaComponent}>Add Build Area</button>
-          </div>
-          {
-            this.state.buildAreaComponents.map((comp, index) => (<div key={'b' + index}>{comp}</div>))
-          }
-        </div>
-
+        <button style={{fontSize: '20px', margin: '10px 0'}} onClick={this.addBuildAreaComponent}>Add Build Area</button>
+        {this.state.buildAreaComponents.map((comp, index) => (<div key={'b' + index}>{this.createBuildAreaComponent()}</div>))}
       </div>
     );
   }
