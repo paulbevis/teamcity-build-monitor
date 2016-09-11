@@ -93,6 +93,8 @@ const branchMonitorDataType = new GraphQLObjectType({
   fields: {
     branchName: {type: GraphQLString},
     buildNumber: {type: GraphQLString},
+    state: {type: GraphQLString},
+    status: {type: GraphQLString},
     property: {type: new GraphQLList(nameValuePairType)}
   }
 });

@@ -58,6 +58,7 @@ module.exports = {
                 stats.branchName = buildParent.build[0].branchName
                 stats.buildNumber = buildParent.build[0].number
                 stats.state = buildParent.build[0].state
+                stats.status = buildParent.build[0].status
                 return stats;
               });
           }
