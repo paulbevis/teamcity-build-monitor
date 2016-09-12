@@ -12,7 +12,7 @@ export default class BuildComponent extends React.Component {
     return results.length !== 0 ? results[0].value : ''
   }
 
-  displayTestResults(failedTests, passedTests) {
+  displayTestResults(failedTests, passedTests, buildComplete) {
     let styling = {
       display: 'flex',
       margin: '5px',
@@ -21,8 +21,12 @@ export default class BuildComponent extends React.Component {
       color: 'white'
     };
     let content = `${passedTests} Passed`;
-    if (failedTests !== '') {
-      content = `${failedTests} Failed`;
+    if (buildComplete) {
+      if (failedTests !== '') {
+        content = `${failedTests} Failed`;
+      }
+    } else {
+      content = 'Building...'
     }
     return (<div style={styling}>{content}</div>)
   }
@@ -50,13 +54,18 @@ export default class BuildComponent extends React.Component {
       borderRadius: '5px',
       padding: '10px'
     };
+    if (!buildComplete) {
+      styling.animationName = 'pulse'
+      styling.animationDuration = '1.5s'
+      styling.animationIterationCount = 'infinite'
+    }
     return (
       <div style={styling}>
         <div style={{display: 'flex', justifyContent: 'flex-end'}}>
           <span style={{display: 'flex', fontSize: '12px', color: '#333'}}>{this.props.buildNumber}</span>
         </div>
         <div style={{display: 'flex', justifyContent: 'center', fontSize: '40px', color: 'white'}}>{this.props.branchName}</div>
-        {this.displayTestResults(failedTests, passedTests)}
+        {this.displayTestResults(failedTests, passedTests, buildComplete)}
         <CodeCoverage lines={ccLines} functions={ccFunctions} statements={ccStatements}/>
       </div>
     )
