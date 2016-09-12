@@ -28,7 +28,9 @@ export default class BuildComponent extends React.Component {
   }
 
   displayFormat(percentageString) {
-    return `${parseFloat(percentageString).toFixed(2)}`;
+    if (percentageString !== '') {
+      return `${parseFloat(percentageString).toFixed(2)}`;
+    }
   }
 
   render() {
@@ -40,7 +42,7 @@ export default class BuildComponent extends React.Component {
     const ccFunctions = this.displayFormat(this.getPropertyResult('CodeCoverageM'));
     const ccStatements = this.displayFormat(this.getPropertyResult('CodeCoverageB'));
     let styling = {
-      backgroundColor: !buildComplete? 'orange': buildPassed ? 'green' : '#FE2E2E',
+      backgroundColor: !buildComplete ? 'orange' : buildPassed ? 'green' : '#FE2E2E',
       display: 'flex',
       flexDirection: 'column',
       alignSelf: 'center',

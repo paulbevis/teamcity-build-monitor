@@ -3,6 +3,22 @@ import {propEq, filter} from 'ramda'
 
 export default class CodeCoverage extends React.Component {
 
+  coverage(value) {
+    let percentage = 65;
+    if (value !== undefined) {
+      percentage = value
+    }
+    return {backgroundColor: 'lightGray', width: percentage + '%', padding: '0 5px'}
+  }
+
+  displayValue(value){
+    if (value !== undefined){
+      return value+'%'
+    }
+    else  {
+      return '---'
+    }
+  }
 
   render() {
     let topLevelStyle = {
@@ -28,14 +44,16 @@ export default class CodeCoverage extends React.Component {
       backgroundColor: 'gray',
     };
 
-    let percentage ={
+    let percentage = {
       padding: '0 5px',
       margin: '0 5px',
       backgroundColor: 'gray',
       lineHeight: '28px',
       color: '#333'
     };
-
+    let coverageLines = this.coverage(this.props.lines);
+    let coverageFunctions = this.coverage(this.props.functions);
+    let coverageStatements = this.coverage(this.props.statements);
     return (
 
       <div style={topLevelStyle}>
@@ -43,19 +61,19 @@ export default class CodeCoverage extends React.Component {
         <div style={wrappingStyle}>
           <div style={styling}>Lines:</div>
           <div style={percentage}>
-            <div style={{backgroundColor: 'lightGray', width: this.props.lines + '%', padding:'0 5px'}}>{this.props.lines}%</div>
+            <div style={coverageLines}>{this.displayValue(this.props.lines)}</div>
           </div>
         </div>
         <div style={wrappingStyle}>
           <div style={styling}>Funcs:</div>
           <div style={percentage}>
-            <div style={{backgroundColor: 'lightGray', width: this.props.lines + '%', padding:'0 5px'}}>{this.props.functions}%</div>
+            <div style={coverageFunctions}>{this.displayValue(this.props.functions)}</div>
           </div>
         </div>
         <div style={wrappingStyle}>
           <div style={styling}>Stmts:</div>
           <div style={percentage}>
-            <div style={{backgroundColor: 'lightGray', width: this.props.lines + '%', padding:'0 5px'}}>{this.props.statements}%</div>
+            <div style={coverageStatements}>{this.displayValue(this.props.statements)}</div>
           </div>
         </div>
       </div>
