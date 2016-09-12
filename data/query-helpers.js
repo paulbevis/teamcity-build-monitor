@@ -40,7 +40,7 @@ module.exports = {
     var data = rp(options).then((res) => JSON.parse(res));
     return data.then(function(resp) {
       var buildPromiseArray = resp.branch.map(function(branch) {
-        options.url = BUILD_TYPES_URL + args.buildTypeName + '/builds?locator=branch:' + branch.name + ',count:1';
+        options.url = BUILD_TYPES_URL + args.buildTypeName + '/builds?locator=branch:' + branch.name + ',running:any,count:1';
         console.log(options.url);
         return rp(options).then((resp2) => JSON.parse(resp2));
       });
