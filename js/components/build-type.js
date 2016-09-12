@@ -8,22 +8,28 @@ class BuildType extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {value: ''};
-    this.fetchBuilds = this.fetchBuilds.bind(this);
+    this.state = {value: '', initialised: false};
+    this.pollForLatestBuildChanges = this.pollForLatestBuildChanges.bind(this);
     this.change = this.change.bind(this);
+    this.pollForLatestBuildChanges();
   }
 
-  fetchBuilds() {
+
+  pollForLatestBuildChanges() {
+    setTimeout(()=> {
+      this.setState({'lastPoll': Date.now()});
+      this.pollForLatestBuildChanges();
+    }, 60000)
 
   }
 
   change(event) {
-    this.setState({buildType: event.target.value});
+    this.setState({buildType: event.target.value, initialised: true});
   }
 
 
   createBuildsComponent() {
-    if (this.state.buildType) {
+    if (this.state.buildType || this.state.initialised) {
 
       return (
         <RootContainer
@@ -34,7 +40,11 @@ class BuildType extends React.Component {
               parameterList: ['SuccessRate', 'FailedTestCount', 'PassedTestCount',
                 'CodeCoverageB', 'CodeCoverageL', 'CodeCoverageM']
             }
-          })}/>)
+          })}
+          forceFetch={true}
+          renderFetched={function(data) {
+            return (<BuildsComponent {...data} date={Date.now()}/>);
+          }}/>)
 
     }
   }
