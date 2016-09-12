@@ -22,7 +22,7 @@ export default class App extends React.Component {
       this.setState({'lastPoll': Date.now()});
       this.pollForLatestChanges();
       console.log('pollForLatestChanges')
-    }, 60000)
+    }, 600000)
 
   }
 
