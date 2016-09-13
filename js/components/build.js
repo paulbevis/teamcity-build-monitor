@@ -52,19 +52,30 @@ export default class BuildComponent extends React.Component {
       alignSelf: 'center',
       margin: '5px',
       borderRadius: '5px',
-      padding: '10px'
+      padding: '10px',
+      width: '500px'
     };
+
     if (!buildComplete) {
       styling.animationName = 'pulse'
       styling.animationDuration = '1.5s'
       styling.animationIterationCount = 'infinite'
+    }
+
+    const branchStyle = {
+      fontSize: '40px', color: 'white',
+      textOverflow: 'ellipsis',
+      width: '100%',
+      whiteSpace: 'nowrap',
+      overflow: 'hidden',
+      textAlign: 'center'
     }
     return (
       <div style={styling}>
         <div style={{display: 'flex', justifyContent: 'flex-end'}}>
           <span style={{display: 'flex', fontSize: '12px', color: '#333'}}>{this.props.buildNumber}</span>
         </div>
-        <div style={{display: 'flex', justifyContent: 'center', fontSize: '40px', color: 'white'}}>{this.props.branchName}</div>
+        <div style={branchStyle}>{this.props.branchName}</div>
         {this.displayTestResults(failedTests, passedTests, buildComplete)}
         <CodeCoverage lines={ccLines} functions={ccFunctions} statements={ccStatements}/>
       </div>
