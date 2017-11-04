@@ -6,6 +6,7 @@ import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import {clean} from 'require-clean';
 import {exec} from 'child_process';
+import cors from 'cors'
 
 const APP_PORT = 3003;
 const GRAPHQL_PORT = 8083;
@@ -50,6 +51,7 @@ function startGraphQLServer(callback) {
   clean('./data/schema');
   const {Schema} = require('./data/schema');
   const graphQLApp = express();
+  graphQLApp.use(cors());
   graphQLApp.use('/', graphQLHTTP({
     graphiql: true,
     pretty: true,
